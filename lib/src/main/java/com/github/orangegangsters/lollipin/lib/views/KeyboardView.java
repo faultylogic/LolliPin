@@ -2,6 +2,7 @@ package com.github.orangegangsters.lollipin.lib.views;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Vibrator;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -79,6 +80,8 @@ public class KeyboardView extends RelativeLayout implements View.OnClickListener
             return;
         }
 
+        Vibrator vibrator = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator.vibrate(50);
         int id = v.getId();
         if(id == R.id.pin_code_button_0) {
             mKeyboardButtonClickedListener.onKeyboardClick(KeyboardButtonEnum.BUTTON_0);

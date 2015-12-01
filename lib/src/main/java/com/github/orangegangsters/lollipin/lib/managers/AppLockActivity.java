@@ -13,7 +13,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.github.omadahealth.typefaceview.TypefaceTextView;
 import com.github.orangegangsters.lollipin.lib.PinActivity;
 import com.github.orangegangsters.lollipin.lib.R;
 import com.github.orangegangsters.lollipin.lib.enums.KeyboardButtonEnum;
@@ -115,16 +114,18 @@ public abstract class AppLockActivity extends PinActivity implements KeyboardBut
         mStepTextView = (TextView) this.findViewById(R.id.pin_code_step_textview);
         mPinCodeRoundView = (PinCodeRoundView) this.findViewById(R.id.pin_code_round_view);
         mPinCodeRoundView.setPinLength(this.getPinLength());
-        mForgotTextView = (TypefaceTextView) this.findViewById(R.id.pin_code_forgot_textview);
+        mForgotTextView = (TextView) this.findViewById(R.id.pin_code_forgot_textview);
         mForgotTextView.setOnClickListener(this);
         mKeyboardView = (KeyboardView) this.findViewById(R.id.pin_code_keyboard_view);
         mKeyboardView.setKeyboardButtonClickedListener(this);
 
         int logoId = mLockManager.getAppLock().getLogoId();
+        int logoColour = mLockManager.getAppLock().getLogoColour();
         ImageView logoImage = ((ImageView) findViewById(R.id.pin_code_logo_imageview));
         if (logoId != AppLock.LOGO_ID_NONE) {
             logoImage.setVisibility(View.VISIBLE);
             logoImage.setImageResource(logoId);
+            logoImage.setBackgroundColor(logoColour);
         }
         mForgotTextView.setText(getForgotText());
         mForgotTextView.setVisibility(mLockManager.getAppLock().shouldShowForgot() ? View.VISIBLE : View.GONE);

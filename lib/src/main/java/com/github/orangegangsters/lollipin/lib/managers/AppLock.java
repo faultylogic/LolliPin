@@ -177,4 +177,8 @@ public abstract class AppLock {
      * Otherwise returns true
      */
     public abstract boolean shouldLockSceen(Activity activity);
+
+    public abstract int getLogoColour();
+
+    public abstract void setLogoColour(int colourId);
 }

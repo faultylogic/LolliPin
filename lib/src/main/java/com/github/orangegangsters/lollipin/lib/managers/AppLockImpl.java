@@ -43,6 +43,10 @@ public class AppLockImpl<T extends AppLockActivity> extends AppLock implements L
      */
     private static final String LOGO_ID_PREFERENCE_KEY = "LOGO_ID_PREFERENCE_KEY";
     /**
+     * The {@link android.content.SharedPreferences} key used to store the logo colour resource id
+     */
+    private static final String LOGO_COLOUR_ID_PREFERENCE_KEY = "LOGO_COLOUR_ID_PREFERENCE_KEY";
+    /**
      * The {@link android.content.SharedPreferences} key used to store the forgot option
      */
     private static final String SHOW_FORGOT_PREFERENCE_KEY = "SHOW_FORGOT_PREFERENCE_KEY";
@@ -165,6 +169,18 @@ public class AppLockImpl<T extends AppLockActivity> extends AppLock implements L
     }
 
     @Override
+    public void setLogoColour(int colourId) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putInt(LOGO_COLOUR_ID_PREFERENCE_KEY, colourId);
+        editor.apply();
+    }
+
+    @Override
+    public int getLogoColour() {
+        return mSharedPreferences.getInt(LOGO_COLOUR_ID_PREFERENCE_KEY, LOGO_ID_NONE);
+    }
+
+    @Override
     public void setShouldShowForgot(boolean showForgot) {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putBoolean(SHOW_FORGOT_PREFERENCE_KEY, showForgot);
@@ -208,6 +224,7 @@ public class AppLockImpl<T extends AppLockActivity> extends AppLock implements L
                 .remove(LAST_ACTIVE_MILLIS_PREFERENCE_KEY)
                 .remove(TIMEOUT_MILLIS_PREFERENCE_KEY)
                 .remove(LOGO_ID_PREFERENCE_KEY)
+                .remove(LOGO_COLOUR_ID_PREFERENCE_KEY)
                 .remove(SHOW_FORGOT_PREFERENCE_KEY)
                 .apply();
     }
@@ -320,6 +337,7 @@ public class AppLockImpl<T extends AppLockActivity> extends AppLock implements L
 
         return true;
     }
+
 
     @Override
     public void onActivityPaused(Activity activity) {
