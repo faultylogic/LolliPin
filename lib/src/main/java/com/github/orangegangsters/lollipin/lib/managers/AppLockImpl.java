@@ -6,21 +6,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
-import android.util.Base64;
 import android.util.Log;
 
 import com.github.orangegangsters.lollipin.lib.PinActivity;
 import com.github.orangegangsters.lollipin.lib.PinFragmentActivity;
 import com.github.orangegangsters.lollipin.lib.encryption.Encryptor;
 import com.github.orangegangsters.lollipin.lib.interfaces.LifeCycleInterface;
-
-import java.security.SecureRandom;
-
-import javax.crypto.Cipher;
-import javax.crypto.SecretKey;
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
-import javax.crypto.spec.PBEParameterSpec;
 
 public class AppLockImpl<T extends AppLockActivity> extends AppLock implements LifeCycleInterface {
 
@@ -137,6 +128,7 @@ public class AppLockImpl<T extends AppLockActivity> extends AppLock implements L
 
     private String generateSalt() {
         byte[] salt;
+        /*
         try {
             SecretKey key = SecretKeyFactory
                     .getInstance(KEY_ALGORITHM)
@@ -147,8 +139,10 @@ public class AppLockImpl<T extends AppLockActivity> extends AppLock implements L
             cipher.init(Cipher.ENCRYPT_MODE, key, new PBEParameterSpec(salt, KEY_ITERATIONS));
         } catch (Exception e) {
             salt = DEFAULT_PASSWORD_SALT.getBytes();
-        }
-        return Base64.encodeToString(salt, Base64.DEFAULT);
+        }*/
+        String salty = "iuagwrviuqwg349u8u3489hbio34hn2345h89v235hg98vmw345yh89vnw498ucg298hj98bw4908gh34";
+        //return Base64.encodeToString(salty.getBytes(), Base64.DEFAULT);
+        return salty;
     }
 
     @Override
